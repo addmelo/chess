@@ -80,6 +80,18 @@ public class ChessPiece {
             var validMoves = new KnightMovesCalculator();
             return validMoves.pieceMoves(board, myPosition);
         }
+        else if (pieceType == PieceType.PAWN){
+            var validMoves = new PawnMovesCalculator();
+            return validMoves.pieceMoves(board, myPosition);
+        }
+        else if (pieceType == PieceType.QUEEN){
+            var validMoves = new QueenMovesCalculator();
+            return validMoves.pieceMoves(board, myPosition);
+        }
+        else if (pieceType == PieceType.ROOK){
+            var validMoves = new RookMovesCalculator();
+            return validMoves.pieceMoves(board, myPosition);
+        }
         return null;
     }
 }
