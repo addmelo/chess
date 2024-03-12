@@ -9,7 +9,18 @@ public class Server {
 
         Spark.staticFiles.location("web");
 
-        // Register your endpoints and handle exceptions here.
+        // Create endpoints and handle exceptions
+
+        Spark.staticFiles.location("web");
+        Spark.post("/user", this::registerHandler);
+        Spark.post("/session", this::roginHandler);
+        Spark.post(("/game"), this::createGameHandler);
+        Spark.put(("/game"), this::joinGameHandler);
+        Spark.get(("/game"), this::listGamesHandler);
+        Spark.delete("/db", this::clearApplicationHandler);
+        Spark.delete("/session", this::logoutHandler);
+        Spark.awaitInitialization();
+        return Spark.port();
 
         Spark.awaitInitialization();
         return Spark.port();
@@ -19,4 +30,6 @@ public class Server {
         Spark.stop();
         Spark.awaitStop();
     }
+
+    private
 }
