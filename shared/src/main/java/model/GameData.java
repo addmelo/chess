@@ -10,13 +10,15 @@ public class GameData {
     private String blackUsername;
     private final String gameName;
     private ChessGame game;
+    private String authToken;
 
-    public GameData(String gameName, String gameID){
+    public GameData(String gameName, String gameID, String authToken){
         this.gameID = gameID;
         this.whiteUsername = null;
         this.blackUsername = null;
         this.gameName = gameName;
         this.game = null;
+        this.authToken = authToken;
 
     }
 
@@ -44,6 +46,7 @@ public class GameData {
     public ChessGame getGame(){
         return game;
     }
+    public String getAuthToken() {return authToken;}
 
 
     @Override
