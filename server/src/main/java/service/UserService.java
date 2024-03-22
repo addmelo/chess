@@ -11,6 +11,8 @@ public class UserService {
     private AuthDAO auth;
 
     public UserService(UserDAO user, AuthDAO auth){
+        this.user = user;
+        this.auth = auth;
     }
 
     public AuthData register(UserData newUser) throws DataAccessException{
@@ -27,7 +29,7 @@ public class UserService {
             throw new DataAccessException("Error: email already taken.");
         }
         if (username == null || email == null || password == null){
-            throw  new DataAccessException("Error: need more information");
+            throw  new DataAccessException("Error: bad request");
         }
         // Create new user and new authToken
         else{
@@ -42,25 +44,18 @@ public class UserService {
         String password = newUser.getPassword();
         AuthData authToken = null;
 
-        if(user.getUserWithUsername(username).getPassword().equals(password)){
-            authToken = auth.findUserToken(username);
-        }else {
+        if(user.getUserWithUsername(username) == null){
             throw new DataAccessException("Error: unauthorized.");
         }
+        if(!user.getUserWithUsername(username).getPassword().equals(password)){
+            throw new DataAccessException("Error: unauthorized.");
+        }
+        authToken = auth.addAuthToken(username);
         return authToken;
     }
 
-    public void logOut(UserData newUser) throws DataAccessException{
-        String username = newUser.getName();
-        AuthData authToken = auth.findUserToken(username);
-        if (authToken == null){
-            throw new DataAccessException("Error: unauthorized");
-        }
-        auth.removeAuthToken(authToken);
 
-    }
-
-    public void logOutAuth(String token) throws DataAccessException{
+    public void logOut(String token) throws DataAccessException{
         AuthData authToken = auth.findToken(token);
         if (authToken == null){
             throw new DataAccessException("Error: unauthorized");

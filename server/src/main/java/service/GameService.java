@@ -12,38 +12,47 @@ public class GameService {
     private GameDAO game;
     private AuthDAO auth;
 
-    public GameService(GameData game, AuthData auth){
-
+    public GameService(GameDAO game, AuthDAO auth){
+        this.game = game;
+        this.auth = auth;
     }
-    public String registerGame(GameData currGame) throws DataAccessException {
-        if (auth.findToken(currGame.getAuthToken()) == null){
+    public String registerGame(GameData currGame, String token) throws DataAccessException {
+
+        AuthData authToken = auth.findToken(token);
+        if (auth.findAuthToken(authToken) == null) {
             throw new DataAccessException("Error: unauthorized.");
         }
-
         if (game.getGameName(currGame.getName())){
-            throw new DataAccessException("Error: game already exists!");
+            throw new DataAccessException("Error: bad request.");
         }
         game.addGame(currGame);
         return currGame.getGameID();
     }
 
-    public void joinGame(GameData currGame, AuthData authToken, String playerColor) throws DataAccessException {
+    public void joinGame(GameData currGame, String token) throws DataAccessException {
         String gameID = currGame.getGameID();
-        String gameName = currGame.getName();
+        String playerColor = currGame.getPlayerColor();
+        AuthData authToken = auth.findToken(token);
         String username = authToken.getUsername();
-        if (auth.findAuthToken(authToken) == null){
+        if (auth.findAuthToken(authToken) == null) {
             throw new DataAccessException("Error: unauthorized.");
         }
-        if (gameID == null){
+        if (gameID == null) {
             throw new DataAccessException("Error: no game with this ID.");
         }
-        if (!game.setGame(currGame, playerColor, username)){
+        if (!game.setGame(currGame, playerColor, username)) {
             throw new DataAccessException("Error: color already taken.");
+        }
+        GameData gameToJoin = game.getGame(gameID);
+        if (playerColor.equals("White")) {
+            gameToJoin.setWhite(username);
+        } else{
+            gameToJoin.setBlack(username);
         }
     }
 
-    public ArrayList<GameData> listGames(AuthData authToken) throws DataAccessException{
-        if (auth.findAuthToken(authToken) == null){
+    public ArrayList<GameData> listGames(String token) throws DataAccessException{
+        if (auth.findToken(token) == null){
             throw new DataAccessException("Error: unauthorized.");
         }
         return game.getList();

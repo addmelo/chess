@@ -12,6 +12,12 @@ public class ClearService {
     private GameDAO game;
     private AuthDAO auth;
 
+    public ClearService(UserDAO user, GameDAO game, AuthDAO auth) {
+        this.user = user;
+        this.game = game;
+        this.auth = auth;
+    }
+
     public void clearApplication() throws DataAccessException{
         user.clearAllUsers();
         game.clearAllGames();

@@ -5,20 +5,33 @@ import chess.ChessGame;
 import java.util.Objects;
 
 public class GameData {
-    private final String gameID;
+    private String gameID;
     private String whiteUsername;
     private String blackUsername;
     private final String gameName;
     private ChessGame game;
     private String authToken;
+    private  String playerColor;
 
-    public GameData(String gameName, String gameID, String authToken){
+
+    public GameData(String gameID, String playerColor){
         this.gameID = gameID;
+        this.whiteUsername = null;
+        this.blackUsername = null;
+        this.gameName = null;
+        this.game = null;
+        this.authToken = null;
+        this.playerColor = playerColor;
+
+    }
+    public GameData(String gameName){
+        this.gameID = null;
         this.whiteUsername = null;
         this.blackUsername = null;
         this.gameName = gameName;
         this.game = null;
-        this.authToken = authToken;
+        this.authToken = null;
+        this.playerColor = null;
 
     }
 
@@ -38,7 +51,9 @@ public class GameData {
     public void setBlack(String playerBlack){
         blackUsername = playerBlack;
     }
-
+    public void setGameID(String gameID){
+        this.gameID = gameID;
+    }
     public String getName(){
         return gameName;
     }
@@ -47,6 +62,7 @@ public class GameData {
         return game;
     }
     public String getAuthToken() {return authToken;}
+    public String getPlayerColor() {return playerColor;}
 
 
     @Override

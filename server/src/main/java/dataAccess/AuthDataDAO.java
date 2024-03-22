@@ -43,6 +43,6 @@ public class AuthDataDAO implements AuthDAO {
     }
 
     public void clearAllAuth() {
-        authTokensList.clear();;
+        authTokensList.clear();
     }
 }

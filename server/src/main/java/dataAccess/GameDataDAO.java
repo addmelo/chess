@@ -4,12 +4,13 @@ import model.GameData;
 
 import java.util.ArrayList;
 
-public class GameDataDAO {
+public class GameDataDAO implements GameDAO{
     private ArrayList<GameData> gamesList =  new ArrayList<>();
     int gameCount = 1;
 
     public void addGame(GameData newGame) {
         gameCount += 1;
+        newGame.setGameID(String.valueOf(gameCount));
         gamesList.add(newGame);
     }
 
