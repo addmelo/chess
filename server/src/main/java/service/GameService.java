@@ -18,8 +18,7 @@ public class GameService {
     }
     public String registerGame(GameData currGame, String token) throws DataAccessException {
 
-        AuthData authToken = auth.findToken(token);
-        if (auth.findAuthToken(authToken) == null) {
+        if (auth.findToken(token) == null) {
             throw new DataAccessException("Error: unauthorized.");
         }
         if (game.getGameName(currGame.getName())){
@@ -32,9 +31,8 @@ public class GameService {
     public void joinGame(GameData currGame, String token) throws DataAccessException {
         String gameID = currGame.getGameID();
         String playerColor = currGame.getPlayerColor();
-        AuthData authToken = auth.findToken(token);
-        String username = authToken.getUsername();
-        if (auth.findAuthToken(authToken) == null) {
+        String username = auth.findToken(token).getUsername();
+        if (auth.findToken(token) == null) {
             throw new DataAccessException("Error: unauthorized.");
         }
         if (gameID == null) {

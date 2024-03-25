@@ -8,9 +8,8 @@ public class GameData {
     private String gameID;
     private String whiteUsername;
     private String blackUsername;
-    private final String gameName;
+    private String gameName;
     private ChessGame game;
-    private String authToken;
     private  String playerColor;
 
 
@@ -20,7 +19,6 @@ public class GameData {
         this.blackUsername = null;
         this.gameName = null;
         this.game = null;
-        this.authToken = null;
         this.playerColor = playerColor;
 
     }
@@ -30,7 +28,6 @@ public class GameData {
         this.blackUsername = null;
         this.gameName = gameName;
         this.game = null;
-        this.authToken = null;
         this.playerColor = null;
 
     }
@@ -61,7 +58,7 @@ public class GameData {
     public ChessGame getGame(){
         return game;
     }
-    public String getAuthToken() {return authToken;}
+
     public String getPlayerColor() {return playerColor;}
 
 

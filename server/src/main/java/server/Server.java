@@ -87,7 +87,7 @@ public class Server {
             GameData request = new Gson().fromJson(req.body(), GameData.class);
             String gameID = gameService.registerGame(request, token);
             res.status(200);
-            return new Gson().toJson(gameID);
+            return new Gson().toJson(new GameData(gameID, null));
         }
         catch (DataAccessException e){
             var message = e.getMessage();
