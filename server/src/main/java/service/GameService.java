@@ -3,14 +3,13 @@ package service;
 import dataAccess.AuthDAO;
 import dataAccess.DataAccessException;
 import dataAccess.GameDAO;
-import model.AuthData;
 import model.GameData;
 
 import java.util.ArrayList;
 
 public class GameService {
-    private GameDAO game;
-    private AuthDAO auth;
+    private final GameDAO game;
+    private final AuthDAO auth;
 
     public GameService(GameDAO game, AuthDAO auth){
         this.game = game;

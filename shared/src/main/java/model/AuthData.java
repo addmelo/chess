@@ -4,8 +4,8 @@ import java.util.Objects;
 import java.util.UUID;
 
 public class AuthData {
-    private final String authToken;
-    private final String username;
+    private String authToken;
+    private String username;
     public AuthData(String username){
         this.username = username;
         this.authToken = UUID.randomUUID().toString();

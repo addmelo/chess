@@ -2,16 +2,15 @@ package model;
 
 import chess.ChessGame;
 
-import java.util.ArrayList;
 import java.util.Objects;
 
 public class GameData {
     private String gameID;
     private String whiteUsername;
     private String blackUsername;
-    private String gameName;
-    private ChessGame game;
-    private  String playerColor;
+    private final String gameName;
+    private final ChessGame game;
+    private final String playerColor;
 
     public GameData(String playerColor, String gameID){
         this.gameID = gameID;
@@ -42,21 +41,16 @@ public class GameData {
     public String getBlack(){
         return blackUsername;
     }
+    public void setGameID(String gameID){
+        this.gameID = gameID;
+    }
     public void setWhite(String playerWhite){
         whiteUsername = playerWhite;
     }
     public void setBlack(String playerBlack) {blackUsername = playerBlack;}
-    public void setGameID(String gameID){
-        this.gameID = gameID;
-    }
     public String getName(){
         return gameName;
     }
-
-    public ChessGame getGame(){
-        return game;
-    }
-
     public String getPlayerColor() {return playerColor;}
 
 
