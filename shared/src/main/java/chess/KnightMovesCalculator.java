@@ -13,41 +13,41 @@ public class KnightMovesCalculator implements PieceMovesCalculator{
 
         if (currRow + 2 <= 8 && currCol + 1 <= 8){
             var nextPosition = new ChessPosition(currRow+2, currCol+1);
-            HelperFunction(validMoves, board, position, nextPosition);
+            helperFunction(validMoves, board, position, nextPosition);
         }
         if (currRow + 1 <= 8 && currCol + 2 <= 8){
             var nextPosition = new ChessPosition(currRow+1, currCol+2);
-            HelperFunction(validMoves, board, position, nextPosition);
+            helperFunction(validMoves, board, position, nextPosition);
         }
         if (currRow - 1 >= 1 && currCol + 2 <= 8){
             var nextPosition = new ChessPosition(currRow-1, currCol+2);
-            HelperFunction(validMoves, board, position, nextPosition);
+            helperFunction(validMoves, board, position, nextPosition);
         }
         if (currRow - 2 >= 1 && currCol + 1 <= 8){
             var nextPosition = new ChessPosition(currRow-2, currCol+1);
-            HelperFunction(validMoves, board, position, nextPosition);
+            helperFunction(validMoves, board, position, nextPosition);
         }
         if (currRow - 2 >= 1 && currCol - 1 >= 1){
             var nextPosition = new ChessPosition(currRow-2, currCol-1);
-            HelperFunction(validMoves, board, position, nextPosition);
+            helperFunction(validMoves, board, position, nextPosition);
         }
         if (currRow - 1 >= 1 && currCol - 2 >= 1){
             var nextPosition = new ChessPosition(currRow-1, currCol-2);
-            HelperFunction(validMoves, board, position, nextPosition);
+            helperFunction(validMoves, board, position, nextPosition);
         }
         if (currRow + 1 <= 8 && currCol - 2 >= 1){
             var nextPosition = new ChessPosition(currRow+1, currCol-2);
-            HelperFunction(validMoves, board, position, nextPosition);
+            helperFunction(validMoves, board, position, nextPosition);
         }
         if (currRow + 2 <= 8 && currCol - 1 >= 1){
             var nextPosition = new ChessPosition(currRow+2, currCol-1);
-            HelperFunction(validMoves, board, position, nextPosition);
+            helperFunction(validMoves, board, position, nextPosition);
         }
 
         return validMoves;
     }
 
-    public void HelperFunction(Collection<ChessMove> validMoves, ChessBoard board, ChessPosition position, ChessPosition nextPosition) {
+    public void helperFunction(Collection<ChessMove> validMoves, ChessBoard board, ChessPosition position, ChessPosition nextPosition) {
         if ((board.getPiece(nextPosition) == null)) {
             validMoves.add(new ChessMove(position, nextPosition));
         } else if ((board.getPiece(nextPosition).getTeamColor() != board.getPiece(position).getTeamColor())) {

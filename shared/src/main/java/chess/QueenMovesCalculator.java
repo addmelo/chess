@@ -22,41 +22,41 @@ public class QueenMovesCalculator implements PieceMovesCalculator{
         for (int i = 1; i <= 8; i++) {
             if (currRow + i <= 8){
                 var nextPosition = new ChessPosition(currRow+i, currCol);
-                up = HelperFunction(validMoves, board, position, nextPosition, up);
+                up = helperFunction(validMoves, board, position, nextPosition, up);
             }
             if (currRow + i <= 8 && currCol - i >= 1){
                 var nextPosition = new ChessPosition(currRow+i, currCol-i);
-                upLeft = HelperFunction(validMoves, board, position, nextPosition, upLeft);
+                upLeft = helperFunction(validMoves, board, position, nextPosition, upLeft);
             }
             if (currCol - i >= 1){
                 var nextPosition = new ChessPosition(currRow, currCol-i);
-                left = HelperFunction(validMoves, board, position, nextPosition, left);
+                left = helperFunction(validMoves, board, position, nextPosition, left);
             }
             if (currRow - i >= 1 && currCol - i >= 1){
                 var nextPosition = new ChessPosition(currRow-i, currCol-i);
-                downLeft = HelperFunction(validMoves, board, position, nextPosition, downLeft);
+                downLeft = helperFunction(validMoves, board, position, nextPosition, downLeft);
             }
             if (currRow - i >= 1){
                 var nextPosition = new ChessPosition(currRow-i, currCol);
-                down = HelperFunction(validMoves, board, position, nextPosition, down);
+                down = helperFunction(validMoves, board, position, nextPosition, down);
             }
             if (currRow - i >= 1 && currCol + i <= 8){
                 var nextPosition = new ChessPosition(currRow-i, currCol+i);
-                downRight = HelperFunction(validMoves, board, position, nextPosition, downRight);
+                downRight = helperFunction(validMoves, board, position, nextPosition, downRight);
             }
             if (currCol + i <= 8){
                 var nextPosition = new ChessPosition(currRow, currCol+i);
-                right = HelperFunction(validMoves, board, position, nextPosition, right);
+                right = helperFunction(validMoves, board, position, nextPosition, right);
             }
             if (currRow + i <= 8 && currCol + i <= 8){
                 var nextPosition = new ChessPosition(currRow+i, currCol+i);
-                upRight = HelperFunction(validMoves, board, position, nextPosition, upRight);
+                upRight = helperFunction(validMoves, board, position, nextPosition, upRight);
             }
         }
         return validMoves;
     }
 
-    public boolean HelperFunction(Collection<ChessMove> validMoves, ChessBoard board, ChessPosition position, ChessPosition nextPosition, boolean keepGoing) {
+    public boolean helperFunction(Collection<ChessMove> validMoves, ChessBoard board, ChessPosition position, ChessPosition nextPosition, boolean keepGoing) {
         if (keepGoing) {
             if ((board.getPiece(nextPosition) == null)) {
                 validMoves.add(new ChessMove(position, nextPosition));

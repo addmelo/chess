@@ -13,41 +13,41 @@ public class KingMovesCalculator implements PieceMovesCalculator {
 
         if (currRow + 1 <= 8){
             var nextPosition = new ChessPosition(currRow+1, currCol);
-            HelperFunction(validMoves, board, position, nextPosition);
+            helperFunction(validMoves, board, position, nextPosition);
         }
         if (currCol - 1 >= 1){
             var nextPosition = new ChessPosition(currRow, currCol-1);
-            HelperFunction(validMoves, board, position, nextPosition);
+            helperFunction(validMoves, board, position, nextPosition);
         }
         if (currRow - 1 >= 1){
             var nextPosition = new ChessPosition(currRow-1, currCol);
-            HelperFunction(validMoves, board, position, nextPosition);
+            helperFunction(validMoves, board, position, nextPosition);
         }
         if (currCol + 1 <=8 ){
             var nextPosition = new ChessPosition(currRow, currCol+1);
-            HelperFunction(validMoves, board, position, nextPosition);
+            helperFunction(validMoves, board, position, nextPosition);
         }
         if (currRow + 1 <= 8 && currCol + 1 <= 8){
             var nextPosition = new ChessPosition(currRow+1, currCol+1);
-            HelperFunction(validMoves, board, position, nextPosition);
+            helperFunction(validMoves, board, position, nextPosition);
         }
         if (currRow + 1 <= 8 && currCol - 1 >= 1){
             var nextPosition = new ChessPosition(currRow+1, currCol-1);
-            HelperFunction(validMoves, board, position, nextPosition);
+            helperFunction(validMoves, board, position, nextPosition);
         }
         if (currRow - 1 >= 1 && currCol + 1 <= 8){
             var nextPosition = new ChessPosition(currRow-1, currCol+1);
-            HelperFunction(validMoves, board, position, nextPosition);
+            helperFunction(validMoves, board, position, nextPosition);
         }
         if (currRow - 1 >= 1 && currCol - 1 >= 1){
             var nextPosition = new ChessPosition(currRow-1, currCol-1);
-            HelperFunction(validMoves, board, position, nextPosition);
+            helperFunction(validMoves, board, position, nextPosition);
         }
 
         return validMoves;
     }
 
-    public void HelperFunction(Collection<ChessMove> validMoves, ChessBoard board, ChessPosition position, ChessPosition nextPosition) {
+    public void helperFunction(Collection<ChessMove> validMoves, ChessBoard board, ChessPosition position, ChessPosition nextPosition) {
         if ((board.getPiece(nextPosition) == null)) {
             validMoves.add(new ChessMove(position, nextPosition));
         } else if ((board.getPiece(nextPosition).getTeamColor() != board.getPiece(position).getTeamColor())) {

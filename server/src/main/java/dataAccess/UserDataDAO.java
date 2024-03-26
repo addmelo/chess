@@ -30,10 +30,6 @@ public class UserDataDAO implements UserDAO {
         userList.add(user);
     }
 
-    public AuthData newAuthToken(String username){
-        return new AuthData(username);
-    }
-
     public void clearAllUsers(){
         userList.clear();
     }

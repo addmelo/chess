@@ -18,25 +18,25 @@ public class RookMovesCalculator implements PieceMovesCalculator{
         for (int i = 1; i <= 8; i++) {
             if (currRow + i <= 8){
                 var nextPosition = new ChessPosition(currRow+i, currCol);
-                up = HelperFunction(validMoves, board, position, nextPosition, up);
+                up = helperFunction(validMoves, board, position, nextPosition, up);
             }
             if (currCol - i >= 1){
                 var nextPosition = new ChessPosition(currRow, currCol-i);
-                left = HelperFunction(validMoves, board, position, nextPosition, left);
+                left = helperFunction(validMoves, board, position, nextPosition, left);
             }
             if (currRow - i >= 1){
                 var nextPosition = new ChessPosition(currRow-i, currCol);
-                down = HelperFunction(validMoves, board, position, nextPosition, down);
+                down = helperFunction(validMoves, board, position, nextPosition, down);
             }
             if (currCol + i <= 8){
                 var nextPosition = new ChessPosition(currRow, currCol+i);
-                right = HelperFunction(validMoves, board, position, nextPosition, right);
+                right = helperFunction(validMoves, board, position, nextPosition, right);
             }
         }
         return validMoves;
     }
 
-    public boolean HelperFunction(Collection<ChessMove> validMoves, ChessBoard board, ChessPosition position, ChessPosition nextPosition, boolean keepGoing) {
+    public boolean helperFunction(Collection<ChessMove> validMoves, ChessBoard board, ChessPosition position, ChessPosition nextPosition, boolean keepGoing) {
         if (keepGoing) {
             if ((board.getPiece(nextPosition) == null)) {
                 validMoves.add(new ChessMove(position, nextPosition));

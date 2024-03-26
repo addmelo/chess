@@ -90,10 +90,6 @@ public class ChessGame {
                 if (isInStalemate(teamPlaying)) {
                     throw new InvalidMoveException("This is a stalemate!");
                 }
-//                // return exception if in checkmate
-//                else if (isInCheckmate(teamPlaying)){
-//                    throw new InvalidMoveException("This is a checkmate");
-//                }
 
                 else{
                     if (move.getPromotionPiece() == null) {

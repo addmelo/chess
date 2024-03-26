@@ -14,19 +14,19 @@ public class PawnMovesCalculator implements PieceMovesCalculator {
         if (board.getPiece(position).getTeamColor() == ChessGame.TeamColor.WHITE) {
             if (currRow + 1 <= 8) {
                 var nextPosition = new ChessPosition(currRow + 1, currCol);
-                HelperFunctionWhite(validMoves, board, position, nextPosition);
+                helperFunctionWhite(validMoves, board, position, nextPosition);
             }
         } else if (board.getPiece(position).getTeamColor() == ChessGame.TeamColor.BLACK) {
             if (currRow - 1 >= 1) {
                 var nextPosition = new ChessPosition(currRow - 1, currCol);
-                HelperFunctionBlack(validMoves, board, position, nextPosition);
+                helperFunctionBlack(validMoves, board, position, nextPosition);
             }
         }
 
         return validMoves;
     }
 
-    public void HelperFunctionWhite(Collection<ChessMove> validMoves, ChessBoard board, ChessPosition position, ChessPosition nextPosition) {
+    public void helperFunctionWhite(Collection<ChessMove> validMoves, ChessBoard board, ChessPosition position, ChessPosition nextPosition) {
         var attackPositionRight = new ChessPosition(position.getRow() + 1, position.getColumn() + 1);
         var attackPositionLeft = new ChessPosition(position.getRow() + 1, position.getColumn() - 1);
         if (position.getRow() == 2) {
@@ -62,7 +62,7 @@ public class PawnMovesCalculator implements PieceMovesCalculator {
         }
     }
 
-    public void HelperFunctionBlack(Collection<ChessMove> validMoves, ChessBoard board, ChessPosition position, ChessPosition nextPosition) {
+    public void helperFunctionBlack(Collection<ChessMove> validMoves, ChessBoard board, ChessPosition position, ChessPosition nextPosition) {
         var attackPositionRight = new ChessPosition(position.getRow() - 1, position.getColumn() + 1);
         var attackPositionLeft = new ChessPosition(position.getRow() - 1, position.getColumn() - 1);
         if (position.getRow() == 7) {
