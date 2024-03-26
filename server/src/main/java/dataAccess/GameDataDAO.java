@@ -41,21 +41,22 @@ public class GameDataDAO implements GameDAO{
         return null;
     }
 
-    public Boolean setGame(GameData game, String playerColor, String userName){
-        if (playerColor == null) {
-            return true;
+    public Boolean setGame(GameData currGame, String playerColor, String username) {
+        for (GameData game : gamesList) {
+            if (game.getGameID().equals(currGame.getGameID())) {
+                if (playerColor==null || playerColor.equals("empty")){
+                    return true;
+                }
+                else if (playerColor.equals("WHITE") && (game.getWhite() == null)) {
+                    game.setWhite(username);
+                    return true;
+                } else if (playerColor.equals("BLACK") && (game.getBlack() == null)) {
+                    game.setBlack(username);
+                    return true;
+                }
+            }
         }
-        if (playerColor.equals("WHITE") && (game.getWhite() == null)){
-            game.setWhite(userName);
-            return true;
-        }
-        else if (playerColor.equals("BLACK") && (game.getBlack() == null)){
-            game.setBlack(userName);
-            return true;
-        }
-        else {
-            return false;
-        }
+        return false;
     }
 
     public ArrayList<GameData> getList(){

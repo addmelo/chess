@@ -19,10 +19,10 @@ public class GameService {
     public String registerGame(GameData currGame, String token) throws DataAccessException {
 
         if (auth.findToken(token) == null) {
-            throw new DataAccessException("Error: unauthorized.");
+            throw new DataAccessException("Error: unauthorized");
         }
         if (game.getGameName(currGame.getName())){
-            throw new DataAccessException("Error: bad request.");
+            throw new DataAccessException("Error: bad request");
         }
         game.addGame(currGame);
         return currGame.getGameID();
@@ -31,27 +31,22 @@ public class GameService {
     public void joinGame(GameData currGame, String token) throws DataAccessException {
         String gameID = currGame.getGameID();
         String playerColor = currGame.getPlayerColor();
-        String username = auth.findToken(token).getUsername();
         if (auth.findToken(token) == null) {
-            throw new DataAccessException("Error: unauthorized.");
+            throw new DataAccessException("Error: unauthorized");
         }
-        if (gameID == null) {
-            throw new DataAccessException("Error: no game with this ID.");
+        if (game.getGame(gameID) == null) {
+            throw new DataAccessException("Error: bad request");
         }
-        if (!game.setGame(currGame, playerColor, username)) {
-            throw new DataAccessException("Error: color already taken.");
-        }
-        GameData gameToJoin = game.getGame(gameID);
-        if (playerColor.equals("White")) {
-            gameToJoin.setWhite(username);
-        } else{
-            gameToJoin.setBlack(username);
+        String username = auth.findToken(token).getUsername();
+        var joined = game.setGame(currGame, playerColor, username);
+        if (!joined) {
+            throw new DataAccessException("Error: already taken");
         }
     }
 
     public ArrayList<GameData> listGames(String token) throws DataAccessException{
         if (auth.findToken(token) == null){
-            throw new DataAccessException("Error: unauthorized.");
+            throw new DataAccessException("Error: unauthorized");
         }
         return game.getList();
     }

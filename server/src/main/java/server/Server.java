@@ -56,7 +56,7 @@ public class Server {
             var message = e.getMessage();
             if (message.equals("Error: bad request")) {
                 res.status(400);
-            } else if (message.equals("Error: username already taken.") || message.equals("Error: email already taken.")) {
+            } else if (message.equals("Error: already taken") || message.equals("Error: already taken")) {
                 res.status(403);
             } else {
                 res.status(500);
@@ -73,7 +73,7 @@ public class Server {
             return new Gson().toJson(authToken);
         } catch (DataAccessException e) {
             var message = e.getMessage();
-            if (message.equals("Error: unauthorized.")) {
+            if (message.equals("Error: unauthorized")) {
                 res.status(401);
             } else {
                 res.status(500);
@@ -87,14 +87,14 @@ public class Server {
             GameData request = new Gson().fromJson(req.body(), GameData.class);
             String gameID = gameService.registerGame(request, token);
             res.status(200);
-            return new Gson().toJson(new GameData(gameID, null));
+            return new Gson().toJson(new GameData(null, gameID));
         }
         catch (DataAccessException e){
             var message = e.getMessage();
-            if (message.equals("Error: unauthorized.")) {
+            if (message.equals("Error: unauthorized")) {
                 res.status(401);
             }
-            if (message.equals("Error: bad request.")) {
+            else if (message.equals("Error: bad request")) {
                 res.status(400);
             }
             else {
@@ -116,10 +116,10 @@ public class Server {
             if (message.equals("Error: unauthorized")) {
                 res.status(401);
             }
-            if (message.equals("Error: bad request")) {
+            else if (message.equals("Error: bad request")) {
                 res.status(400);
             }
-            if (message.equals("Error: already taken")) {
+            else if (message.equals("Error: already taken")) {
                 res.status(403);
             } else {
                 res.status(500);

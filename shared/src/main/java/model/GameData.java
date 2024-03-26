@@ -2,6 +2,7 @@ package model;
 
 import chess.ChessGame;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class GameData {
@@ -12,8 +13,7 @@ public class GameData {
     private ChessGame game;
     private  String playerColor;
 
-
-    public GameData(String gameID, String playerColor){
+    public GameData(String playerColor, String gameID){
         this.gameID = gameID;
         this.whiteUsername = null;
         this.blackUsername = null;
@@ -45,9 +45,7 @@ public class GameData {
     public void setWhite(String playerWhite){
         whiteUsername = playerWhite;
     }
-    public void setBlack(String playerBlack){
-        blackUsername = playerBlack;
-    }
+    public void setBlack(String playerBlack) {blackUsername = playerBlack;}
     public void setGameID(String gameID){
         this.gameID = gameID;
     }

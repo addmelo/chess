@@ -7,6 +7,6 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ClearServiceTest {
     @Test
     public void clearApplication(){
-
+        
     }
 }
